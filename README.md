@@ -25,12 +25,12 @@ The model is trained on a **custom defense dataset** featuring six distinct obje
 - **Model Architecture:** YOLOv8 (PyTorch, Ultralytics)
 - **Trained Weights:** `best.pt`  
 - **Classes:**  
-  - Civilian Aircraft ✈️  
-  - Civilian Car 🚗  
-  - Military Aircraft 🛩️  
-  - Military Helicopter 🚁  
-  - Military Tank 🪖  
-  - Military Truck 🚚
+  - Civilian Aircraft
+  - Civilian Car
+  - Military Aircraft 
+  - Military Helicopter
+  - Military Tank
+  - Military Truck
 - **Framework:** PyTorch  
 - **Backend Integration:** Flask  
 
@@ -39,19 +39,24 @@ The model is trained on a **custom defense dataset** featuring six distinct obje
 ## 🔄 Application Flow
 
 1. **User Uploads Image**  
-   The image is sent from the HTML form to the Flask backend (`app.py`).
+   - The image is sent from the HTML form to the Flask backend (`app.py`).
+   - On form submission, a POST request is sent to the Flask backend (`/predict` route).
+   - The uploaded image is accessed in Flask and saved to `/uploads` folder.
 
 2. **Flask Handles Request**  
-   The app saves the image to the `uploads/` directory and passes its path to `yolo_model.py`.
+   - After the image is saved the flask calls the YOLO inference function `yolo_model.predict`.
+   - The annotated image path is returned and stored in the variable `processed_image_path`.
 
-3. **YOLO Inference**  
-   The `run_yolo_inference(image_path)` function loads the trained YOLOv8 model (`best.pt`) and performs detection.
+4. **YOLO Inference**  
+   - The `predict(image_path)` function in `yolo_model.py` is called and it performs detection.
+   - Then after this a full output path is generated for locating the annotated image.
+   - This full output image path is stored in `processed_image_path` as mentioned earlier.
+   
+5. **Result Generation**  
+   - The processed image with bounding boxes and class labels is saved to the `runs/detect/predict/` folder.
 
-4. **Result Generation**  
-   The processed image with bounding boxes and class labels is saved to the `runs/detect/predict/` folder.
-
-5. **Result Display**  
-   Flask dynamically loads and renders the processed image on the webpage using the result path.
+6. **Result Display**  
+   - Flask dynamically loads and renders the processed image on the webpage using the `result.html` page.
 
 ---
 
@@ -82,6 +87,12 @@ The model is trained on a **custom defense dataset** featuring six distinct obje
 ### `requirements.txt`
 - Lists all Python dependencies (Flask, Ultralytics, Torch, OpenCV, etc.)
 
+### `index.html`
+- Contains the code for landing page and image uploading.
+
+### `result.html`
+- Contains the code for displaying the annotated image.
+
 ---
 
 ## 📦 Requirements
@@ -92,8 +103,12 @@ The model is trained on a **custom defense dataset** featuring six distinct obje
 - jinja2
 - python-multipart
 
-## How to run.
-1. Clone the project to get the frontend, backend and model training/inference code.
-2. From your proprierety dataset, replace the `yaml_path` in `yolo_model.py` with your own data.yaml path.
-3. Train the model based on the 
+## Running the model
+The repository include the frontend code (`index.html` & `result.html`), backend code(`app.py`), Yolo training and inferencing code(`yolo_model.py`) as well as trained model weights i.e `best.pt`.
+Since the trained model weights (`best.pt`) are already included, users can directly run inference without retraining the model.
+
+1. Clone the repository.
+2. Then replace the `model_path` with the appropriate directory path.
+3. Create a seperate `uploads` folder to save the uploaded images. In case you haven't, the `app.py` will generate the folder if it doesn't exist.
+4. By default, the annotated image is stored in /runs/detect/predict due to `save=True` in `yolo_model.py`.
 
