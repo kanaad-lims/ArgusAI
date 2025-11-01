@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YOLO Object Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 1. Global & Dark Theme Setup */
+        :root {
+            --bg-color: #121212;
+            --card-color: #1e1e1e;
+            --border-color: #333;
+            --text-primary: #e0e0e0;
+            --text-secondary: #aaaaaa;
+            --accent-color: #0d6efd; /* Professional Blue */
+            --accent-hover: #0b5ed7;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            
+            /* Center the content */
+            display: grid;
+            place-items: center;
+            padding: 20px;
+        }
+
+        /* 2. The Main Content Card */
+        .upload-container {
+            width: 100%;
+            max-width: 500px;
+            background: var(--card-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem 3rem;
+            text-align: center;
+        }
+
+        /* 3. Header Styling */
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .upload-container p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        /* 4. Form Element Styling */
+        
+        /* This is the key part: Styling the <input type="file"> */
+        .file-input {
+            font-family: inherit; /* Make text match the rest of the page */
+            color: var(--text-secondary);
+            width: 100%;
+            margin-bottom: 2rem; /* Replaces the <br><br> */
+        }
+        
+        /* This pseudo-element styles the "Choose File" button */
+        .file-input::file-selector-button {
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.9rem;
+            
+            color: var(--text-primary);
+            background-color: #3a3a3a;
+            border: 1px solid #555;
+            
+            padding: 10px 15px;
+            margin-right: 12px; /* Space between button and file name */
+            
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .file-input::file-selector-button:hover {
+            background-color: #4a4a4a;
+        }
+
+        /* 5. Submit Button Styling */
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            
+            color: #fff;
+            background-color: var(--accent-color);
+            
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="upload-container">
+        <h2>Object Detection</h2>
+        <p>Upload an image to detect objects using YOLO</p>
+        
+        <form method="POST" enctype="multipart/form-data">
+            
+            <input 
+                type="file" 
+                name="image_file" 
+                accept="image/*" 
+                required
+                class="file-input"
+            >
+            
+            <button type="submit" class="submit-btn">Upload & Detect</button>
+        </form>
+    </div>
+
+</body>
+</html>
