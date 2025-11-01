@@ -92,5 +92,8 @@ The model is trained on a **custom defense dataset** featuring six distinct obje
 - jinja2
 - python-multipart
 
-
+## How to run.
+1. Clone the project to get the frontend, backend and model training/inference code.
+2. From your proprierety dataset, replace the `yaml_path` in `yolo_model.py` with your own data.yaml path.
+3. Train the model based on the 
 
