@@ -1,6 +1,6 @@
 ultralytics
 pandas
 numpy
-fastapi
+flask
 jinja2
 python-multipart
