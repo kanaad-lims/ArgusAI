@@ -1,8 +1,8 @@
-# 🪖 BattleEye  
+# 🪖 ArgusAI
 
 ## Deep learning–powered object detection framework using YOLOv8 for defense and surveillance applications.  
 
-**BattleEye** is a web-based intelligent vision system built with **Flask** and **YOLOv8**.  
+**ArgusAI** is a web-based intelligent vision system built with **Flask** and **YOLOv8**.  
 It allows users to upload images and automatically detect and classify various **military** and **civilian** vehicles and aircraft.  
 The model is trained on a **custom defense dataset** featuring six distinct object classes.  
 *_(Video inference functionality coming soon!)_*
